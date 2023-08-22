@@ -64,3 +64,11 @@ android {
         minSdk = 24
     }
 }
+
+sqldelight {
+    databases {
+        create("NotesDatabase") {
+            packageName.set("com.example.notes.database")
+        }
+    }
+}
