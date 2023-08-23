@@ -1,6 +1,6 @@
 import kotlin.Int;
 
-CREATE TABLE saved_notes (
+CREATE TABLE savedNoteEntity (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     content TEXT NOT NULL,
@@ -8,23 +8,23 @@ CREATE TABLE saved_notes (
 );
 
 insertNote:
-INSERT OR REPLACE INTO saved_notes(id,title,content)
+INSERT OR REPLACE INTO savedNoteEntity(id,title,content)
 VALUES (?,?,?);
 
 markNoteAsDeleted:
-UPDATE saved_notes SET isDeleted = 1 WHERE id == :id;
+UPDATE savedNoteEntity SET isDeleted = 1 WHERE id == :id;
 
 markNoteAsNotDeleted:
-UPDATE saved_notes SET isDeleted = 0 WHERE id == :id;
+UPDATE savedNoteEntity SET isDeleted = 0 WHERE id == :id;
 
 getAllSavedNotes:
 SELECT *
-FROM saved_notes;
+FROM savedNoteEntity;
 
 deleteNote:
-DELETE FROM saved_notes WHERE id == :id;
+DELETE FROM savedNoteEntity WHERE id == :id;
 
 deleteAllNotes:
-DELETE FROM saved_notes;
+DELETE FROM savedNoteEntity;
 
 
