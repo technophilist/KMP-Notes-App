@@ -8,8 +8,8 @@ CREATE TABLE savedNoteEntity (
 );
 
 insertNote:
-INSERT OR REPLACE INTO savedNoteEntity(id,title,content)
-VALUES (?,?,?);
+INSERT OR REPLACE INTO savedNoteEntity(id,title,content,isDeleted)
+VALUES (?,?,?,?);
 
 markNoteAsDeleted:
 UPDATE savedNoteEntity SET isDeleted = 1 WHERE id == :id;
