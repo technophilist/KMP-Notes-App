@@ -4,7 +4,7 @@ CREATE TABLE savedNoteEntity (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     content TEXT NOT NULL,
-    isDeleted INTEGER AS Int NOT NULL DEFAULT 0
+    isDeleted INTEGER NOT NULL DEFAULT 0
 );
 
 insertNote:
