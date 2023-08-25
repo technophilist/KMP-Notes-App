@@ -2,9 +2,8 @@ package com.example.notes.ui.home
 
 import com.example.notes.data.NotesRepository
 import com.example.notes.domain.Note
-import io.mockk.every
-import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestScope
@@ -30,8 +29,21 @@ class HomeViewModelTest {
 
     @BeforeTest
     fun setup() {
-        val notesRepositoryMock = mockk<NotesRepository>()
-        every { notesRepositoryMock.savedNotesStream } returns flowOf(savedNotes)
+        val notesRepositoryMock = object : NotesRepository {
+            override val savedNotesStream: Flow<List<Note>> = flowOf(savedNotes)
+
+            override suspend fun saveNote(note: Note) {
+                TODO("Not yet implemented")
+            }
+
+            override suspend fun deleteNote(note: Note) {
+                TODO("Not yet implemented")
+            }
+
+            override suspend fun deleteAllNotes() {
+                TODO("Not yet implemented")
+            }
+        }
 
         homeViewModel = HomeViewModel(
             notesRepository = notesRepositoryMock,
