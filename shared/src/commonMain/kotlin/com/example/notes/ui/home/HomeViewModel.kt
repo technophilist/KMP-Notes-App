@@ -1,4 +1,4 @@
-package com.example.notes.ui
+package com.example.notes.ui.home
 
 import com.example.notes.data.NotesRepository
 import com.example.notes.domain.Note
