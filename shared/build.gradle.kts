@@ -54,8 +54,6 @@ kotlin {
                 implementation(kotlin("test"))
                 // coroutines
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
-                // mocking
-                implementation("io.mockk:mockk:1.12.0")
             }
         }
 
