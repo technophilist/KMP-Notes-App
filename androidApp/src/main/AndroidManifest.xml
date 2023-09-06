@@ -4,6 +4,7 @@
     <application
         android:name=".NotesAppApplication"
         android:allowBackup="false"
+        android:label="Notes"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
