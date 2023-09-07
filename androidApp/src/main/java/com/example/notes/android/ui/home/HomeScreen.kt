@@ -51,13 +51,15 @@ import com.example.notes.ui.home.HomeScreenUiState
 fun HomeScreen(
     modifier: Modifier = Modifier,
     uiState: HomeScreenUiState,
-    onSearchQueryChange: (String) -> Unit
+    onSearchQueryChange: (String) -> Unit,
+    onNoteItemClick: (Note) -> Unit,
 ) {
     HomeScreen(
         modifier = modifier,
         savedNotes = uiState.savedNotes,
         notesForSearchQuery = uiState.searchResults,
-        onSearchQueryChange = onSearchQueryChange
+        onSearchQueryChange = onSearchQueryChange,
+        onNoteItemClick = onNoteItemClick
     )
 }
 
@@ -67,7 +69,8 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     savedNotes: List<Note>,
     notesForSearchQuery: List<Note>,
-    onSearchQueryChange: (String) -> Unit
+    onSearchQueryChange: (String) -> Unit,
+    onNoteItemClick: (Note) -> Unit
 ) {
     var currentSearchQuery by remember { mutableStateOf("") }
     var isSearchBarActive by remember { mutableStateOf(false) }
@@ -98,7 +101,7 @@ fun HomeScreen(
                 )
             }
             if (!isSearchBarActive) {
-                noteItems(notes = savedNotes, onClick = {/*TODO*/ })
+                noteItems(notes = savedNotes, onClick = { onNoteItemClick(it) })
             }
         }
         FloatingActionButton(
