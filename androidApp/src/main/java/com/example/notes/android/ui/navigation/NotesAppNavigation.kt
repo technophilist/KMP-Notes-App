@@ -8,10 +8,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavArgument
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.notes.android.ui.home.AndroidHomeViewModel
 import com.example.notes.android.ui.home.HomeScreen
 import com.example.notes.android.ui.notedetail.NoteDetailScreen
@@ -42,7 +45,16 @@ fun NotesAppNavigation(
             )
         }
 
-        composable(route = NavigationDestinations.NoteDetailScreen.route) {
+        composable(
+            route = NavigationDestinations.NoteDetailScreen.route,
+            arguments = listOf(
+                navArgument(name = NavigationDestinations.NoteDetailScreen.NAV_ARG_NOTE_ID) {
+                    type = NavType.StringType
+                    nullable = true
+                    defaultValue = null
+                }
+            )
+        ) {
             var noteTitle by remember { mutableStateOf("") } // TODO
             var noteContent by remember { mutableStateOf("") } // TODO
             NoteDetailScreen(
