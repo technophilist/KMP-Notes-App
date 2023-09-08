@@ -21,17 +21,17 @@ interface LocalNotesDataSource {
     /**
      * Used to permanently delete a note.
      */
-    suspend fun permanentlyDeleteNoteWithId(id: Long)
+    suspend fun permanentlyDeleteNoteWithId(id: String)
 
     /**
      * Used to mark a note, with the specified [id], as deleted.
      */
-    suspend fun markNoteAsDeleted(id: Long)
+    suspend fun markNoteAsDeleted(id: String)
 
     /**
      * Used to mark a note, with the specified [id], as not deleted.
      */
-    suspend fun markNoteAsNotDeleted(id: Long)
+    suspend fun markNoteAsNotDeleted(id: String)
 
     /**
      * Used to delete all saved notes.

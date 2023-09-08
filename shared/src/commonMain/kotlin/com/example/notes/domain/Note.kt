@@ -23,7 +23,7 @@ data class Note(
  */
 fun SavedNoteEntity.toNote(): Note {
     return Note(
-        id = this.id,
+        id = this.id.toLong(),
         title = this.title,
         content = this.content,
         isDeleted = this.isDeleted == 1L
@@ -35,7 +35,7 @@ fun SavedNoteEntity.toNote(): Note {
  */
 fun Note.toSavedNoteEntity(): SavedNoteEntity {
     return SavedNoteEntity(
-        id = this.id,
+        id = this.id.toString(),
         title = this.title,
         content = this.content,
         isDeleted = if (this.isDeleted) 1 else 0

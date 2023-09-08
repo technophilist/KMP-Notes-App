@@ -27,15 +27,15 @@ class DefaultLocalNotesDataSource(
         )
     }
 
-    override suspend fun permanentlyDeleteNoteWithId(id: Long) = withContext(ioDispatcher) {
+    override suspend fun permanentlyDeleteNoteWithId(id: String) = withContext(ioDispatcher) {
         queries.deleteNote(id)
     }
 
-    override suspend fun markNoteAsDeleted(id: Long) = withContext(ioDispatcher) {
+    override suspend fun markNoteAsDeleted(id: String) = withContext(ioDispatcher) {
         queries.markNoteAsDeleted(id)
     }
 
-    override suspend fun markNoteAsNotDeleted(id: Long) = withContext(ioDispatcher) {
+    override suspend fun markNoteAsNotDeleted(id: String) = withContext(ioDispatcher) {
         queries.markNoteAsNotDeleted(id)
     }
 
