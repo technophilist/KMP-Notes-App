@@ -5,8 +5,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.AbstractSavedStateViewModelFactory
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavArgument
 import androidx.navigation.NavHostController
@@ -17,6 +23,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.notes.android.ui.home.AndroidHomeViewModel
 import com.example.notes.android.ui.home.HomeScreen
+import com.example.notes.android.ui.notedetail.AndroidNoteDetailViewModel
 import com.example.notes.android.ui.notedetail.NoteDetailScreen
 import com.example.notes.di.AppModule
 
@@ -41,7 +48,10 @@ fun NotesAppNavigation(
                     val route = NavigationDestinations.NoteDetailScreen.buildRoute(it.id)
                     navController.navigate(route)
                 },
-                onCreateNewNoteButtonClick = {/*TODO*/ }
+                onCreateNewNoteButtonClick = {
+                    val route = NavigationDestinations.NoteDetailScreen.buildRoute()
+                    navController.navigate(route)
+                }
             )
         }
 
@@ -55,13 +65,26 @@ fun NotesAppNavigation(
                 }
             )
         ) {
-            var noteTitle by remember { mutableStateOf("") } // TODO
-            var noteContent by remember { mutableStateOf("") } // TODO
+            var noteTitle by rememberSaveable { mutableStateOf("") } // TODO
+            var noteContent by rememberSaveable { mutableStateOf("") } // TODO
+            val viewModel = viewModel {
+                AndroidNoteDetailViewModel(
+                    notesRepository = appModule.provideNotesRepository(),
+                    savedStateHandle = this.createSavedStateHandle()
+                )
+            }
+
             NoteDetailScreen(
                 noteTitle = noteTitle,
                 noteContent = noteContent,
-                onNoteTitleChange = { noteTitle = it },
-                onNoteContentChange = { noteContent = it },
+                onNoteTitleChange = {
+                    noteTitle = it
+                    viewModel.onTitleChange(it)
+                },
+                onNoteContentChange = {
+                    noteContent = it
+                    viewModel.onContentChange(it)
+                },
                 onBackButtonClick = { navController.popBackStack() }
             )
         }
