@@ -53,13 +53,15 @@ fun HomeScreen(
     uiState: HomeScreenUiState,
     onSearchQueryChange: (String) -> Unit,
     onNoteItemClick: (Note) -> Unit,
+    onCreateNewNoteButtonClick: () -> Unit
 ) {
     HomeScreen(
         modifier = modifier,
         savedNotes = uiState.savedNotes,
         notesForSearchQuery = uiState.searchResults,
         onSearchQueryChange = onSearchQueryChange,
-        onNoteItemClick = onNoteItemClick
+        onNoteItemClick = onNoteItemClick,
+        onCreateNewNoteButtonClick = onCreateNewNoteButtonClick
     )
 }
 
@@ -70,7 +72,8 @@ fun HomeScreen(
     savedNotes: List<Note>,
     notesForSearchQuery: List<Note>,
     onSearchQueryChange: (String) -> Unit,
-    onNoteItemClick: (Note) -> Unit
+    onNoteItemClick: (Note) -> Unit,
+    onCreateNewNoteButtonClick: () -> Unit
 ) {
     var currentSearchQuery by remember { mutableStateOf("") }
     var isSearchBarActive by remember { mutableStateOf(false) }
@@ -109,7 +112,7 @@ fun HomeScreen(
                 .align(Alignment.BottomEnd)
                 .navigationBarsPadding()
                 .padding(16.dp),
-            onClick = { /*TODO*/ },
+            onClick = onCreateNewNoteButtonClick,
             content = { Icon(imageVector = Icons.Filled.Add, contentDescription = null) }
         )
     }

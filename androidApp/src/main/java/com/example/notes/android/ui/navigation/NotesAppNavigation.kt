@@ -37,7 +37,8 @@ fun NotesAppNavigation(
                 onNoteItemClick = {
                     val route = NavigationDestinations.NoteDetailScreen.buildRoute(it.id)
                     navController.navigate(route)
-                }
+                },
+                onCreateNewNoteButtonClick = {/*TODO*/ }
             )
         }
 
