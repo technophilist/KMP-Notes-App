@@ -67,23 +67,14 @@ fun NotesAppNavigation(
         ) {
             var noteTitle by rememberSaveable { mutableStateOf("") } // TODO
             var noteContent by rememberSaveable { mutableStateOf("") } // TODO
-            val viewModel = viewModel {
-                AndroidNoteDetailViewModel(
-                    notesRepository = appModule.provideNotesRepository(),
-                    savedStateHandle = this.createSavedStateHandle()
-                )
-            }
-
             NoteDetailScreen(
                 noteTitle = noteTitle,
                 noteContent = noteContent,
                 onNoteTitleChange = {
                     noteTitle = it
-                    viewModel.onTitleChange(it)
                 },
                 onNoteContentChange = {
                     noteContent = it
-                    viewModel.onContentChange(it)
                 },
                 onBackButtonClick = { navController.popBackStack() }
             )
