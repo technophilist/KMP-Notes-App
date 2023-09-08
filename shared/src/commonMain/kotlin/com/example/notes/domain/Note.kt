@@ -12,7 +12,7 @@ import com.example.notes.database.SavedNoteEntity
  * @property isDeleted Whether the note is deleted or not.
  */
 data class Note(
-    val id: Long,
+    val id: String,
     val title: String,
     val content: String,
     val isDeleted: Boolean
@@ -23,7 +23,7 @@ data class Note(
  */
 fun SavedNoteEntity.toNote(): Note {
     return Note(
-        id = this.id.toLong(),
+        id = this.id,
         title = this.title,
         content = this.content,
         isDeleted = this.isDeleted == 1L
@@ -35,7 +35,7 @@ fun SavedNoteEntity.toNote(): Note {
  */
 fun Note.toSavedNoteEntity(): SavedNoteEntity {
     return SavedNoteEntity(
-        id = this.id.toString(),
+        id = this.id,
         title = this.title,
         content = this.content,
         isDeleted = if (this.isDeleted) 1 else 0

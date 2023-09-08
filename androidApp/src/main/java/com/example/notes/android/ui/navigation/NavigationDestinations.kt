@@ -6,7 +6,7 @@ sealed class NavigationDestinations(val route: String) {
         NavigationDestinations(route = "notes_app_note_detail_screen?noteId={noteId}") {
         const val NAV_ARG_NOTE_ID = "noteId"
         fun buildRoute(
-            noteId: Long? = null
+            noteId: String? = null
         ): String {
             return noteId?.let {
                 "notes_app_note_detail_screen?noteId=$noteId"
