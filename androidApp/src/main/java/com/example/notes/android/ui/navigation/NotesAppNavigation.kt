@@ -1,5 +1,6 @@
 package com.example.notes.android.ui.navigation
 
+import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,7 +34,22 @@ fun NotesAppNavigation(
             HomeScreen(
                 uiState = uiState,
                 onSearchQueryChange = viewModel::search,
-                onNoteItemClick = { /*TODO*/ }
+                onNoteItemClick = {
+                    val route = NavigationDestinations.NoteDetailScreen.buildRoute(it.id)
+                    navController.navigate(route)
+                }
+            )
+        }
+
+        composable(route = NavigationDestinations.NoteDetailScreen.route) {
+            var noteTitle by remember { mutableStateOf("") } // TODO
+            var noteContent by remember { mutableStateOf("") } // TODO
+            NoteDetailScreen(
+                noteTitle = noteTitle,
+                noteContent = noteContent,
+                onNoteTitleChange = { noteTitle = it },
+                onNoteContentChange = { noteContent = it },
+                onBackButtonClick = { navController.popBackStack() }
             )
         }
     }
