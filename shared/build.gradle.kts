@@ -33,6 +33,8 @@ kotlin {
                 implementation("app.cash.sqldelight:runtime:2.0.0")
                 // flows support for sql-delight
                 implementation("app.cash.sqldelight:coroutines-extensions:2.0.0")
+                // date-time
+                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.1")
             }
         }
 
