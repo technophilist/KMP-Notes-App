@@ -15,6 +15,7 @@ data class Note(
     val id: String,
     val title: String,
     val content: String,
+    val createdAtTimestampMillis: Long,
     val isDeleted: Boolean
 )
 
@@ -26,6 +27,7 @@ fun SavedNoteEntity.toNote(): Note {
         id = this.id,
         title = this.title,
         content = this.content,
+        createdAtTimestampMillis = createdAtTimestamp,
         isDeleted = this.isDeleted == 1L
     )
 }
@@ -38,6 +40,7 @@ fun Note.toSavedNoteEntity(): SavedNoteEntity {
         id = this.id,
         title = this.title,
         content = this.content,
+        createdAtTimestamp = createdAtTimestampMillis,
         isDeleted = if (this.isDeleted) 1 else 0
     )
 }

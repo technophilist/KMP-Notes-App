@@ -4,12 +4,13 @@ CREATE TABLE savedNoteEntity (
     id TEXT NOT NULL PRIMARY KEY,
     title TEXT NOT NULL,
     content TEXT NOT NULL,
+    createdAtTimestamp INTEGER NOT NULL,
     isDeleted INTEGER NOT NULL DEFAULT 0
 );
 
 insertNote:
-INSERT OR REPLACE INTO savedNoteEntity(id,title,content,isDeleted)
-VALUES (?,?,?,?);
+INSERT OR REPLACE INTO savedNoteEntity(id,title,content,createdAtTimestamp,isDeleted)
+VALUES (?,?,?,?,?);
 
 markNoteAsDeleted:
 UPDATE savedNoteEntity SET isDeleted = 1 WHERE id == :id;

@@ -23,6 +23,7 @@ class DefaultLocalNotesDataSource(
             id = noteEntity.id,
             title = noteEntity.title,
             content = noteEntity.content,
+            createdAtTimestamp = noteEntity.createdAtTimestamp,
             isDeleted = noteEntity.isDeleted
         )
     }
