@@ -21,6 +21,7 @@ UPDATE savedNoteEntity SET isDeleted = 0 WHERE id == :id;
 getAllSavedNotes:
 SELECT *
 FROM savedNoteEntity
+WHERE savedNoteEntity.isDeleted == 0
 ORDER BY savedNoteEntity.createdAtTimestamp DESC;
 
 deleteNote:
