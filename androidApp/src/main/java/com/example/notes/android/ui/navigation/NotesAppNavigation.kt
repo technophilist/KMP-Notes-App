@@ -1,20 +1,10 @@
 package com.example.notes.android.ui.navigation
 
-import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.AbstractSavedStateViewModelFactory
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavArgument
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -65,18 +55,20 @@ fun NotesAppNavigation(
                 }
             )
         ) {
-            var noteTitle by rememberSaveable { mutableStateOf("") } // TODO
-            var noteContent by rememberSaveable { mutableStateOf("") } // TODO
+            val viewModel = viewModel {
+                AndroidNoteDetailViewModel(
+                    savedStateHandle = createSavedStateHandle(),
+                    notesRepository = appModule.provideNotesRepository()
+                )
+            }
+            val noteTitle by viewModel.titleTextStream.collectAsStateWithLifecycle()
+            val noteContent by viewModel.contentTextStream.collectAsStateWithLifecycle()
             NoteDetailScreen(
                 noteTitle = noteTitle,
                 noteContent = noteContent,
-                onNoteTitleChange = {
-                    noteTitle = it
-                },
-                onNoteContentChange = {
-                    noteContent = it
-                },
-                onBackButtonClick = { navController.popBackStack() }
+                onNoteTitleChange = viewModel::onTitleChange,
+                onNoteContentChange = viewModel::onContentChange,
+                onBackButtonClick = navController::popBackStack
             )
         }
     }
