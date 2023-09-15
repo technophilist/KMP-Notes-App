@@ -1,13 +1,8 @@
 package com.example.notes.android.ui.home
 
-import android.net.wifi.hotspot2.pps.HomeSp
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -41,7 +35,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
-import com.example.notes.android.ui.components.NoteListCard
 import com.example.notes.android.ui.components.SwipeableNoteListCard
 import com.example.notes.domain.Note
 import com.example.notes.ui.home.HomeScreenUiState
@@ -105,7 +98,8 @@ fun HomeScreen(
                         onSearchQueryChange("")
                     },
                     suggestionsForQuery = notesForSearchQuery,
-                    onNoteDismissed = onNoteDismissed
+                    onNoteDismissed = onNoteDismissed,
+                    onNoteItemClick = onNoteItemClick
                 )
             }
             if (!isSearchBarActive) {
@@ -137,6 +131,7 @@ private fun AnimatedSearchBar(
     onActiveChange: (Boolean) -> Unit,
     onBackButtonClick: () -> Unit,
     onNoteDismissed: (Note) -> Unit,
+    onNoteItemClick: (Note) -> Unit,
     modifier: Modifier = Modifier,
     suggestionsForQuery: List<Note>
 ) {
@@ -190,7 +185,7 @@ private fun AnimatedSearchBar(
             ) {
                 noteItems(
                     notes = suggestionsForQuery,
-                    onClick = {/*TODO*/ },
+                    onClick = onNoteItemClick,
                     onDismissed = onNoteDismissed
                 )
             }
