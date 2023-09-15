@@ -42,6 +42,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import com.example.notes.android.ui.components.NoteListCard
+import com.example.notes.android.ui.components.SwipeableNoteListCard
 import com.example.notes.domain.Note
 import com.example.notes.ui.home.HomeScreenUiState
 
@@ -53,7 +54,8 @@ fun HomeScreen(
     uiState: HomeScreenUiState,
     onSearchQueryChange: (String) -> Unit,
     onNoteItemClick: (Note) -> Unit,
-    onCreateNewNoteButtonClick: () -> Unit
+    onCreateNewNoteButtonClick: () -> Unit,
+    onNoteDismissed: (Note) -> Unit
 ) {
     HomeScreen(
         modifier = modifier,
@@ -61,7 +63,8 @@ fun HomeScreen(
         notesForSearchQuery = uiState.searchResults,
         onSearchQueryChange = onSearchQueryChange,
         onNoteItemClick = onNoteItemClick,
-        onCreateNewNoteButtonClick = onCreateNewNoteButtonClick
+        onCreateNewNoteButtonClick = onCreateNewNoteButtonClick,
+        onNoteDismissed = onNoteDismissed
     )
 }
 
@@ -73,7 +76,8 @@ fun HomeScreen(
     notesForSearchQuery: List<Note>,
     onSearchQueryChange: (String) -> Unit,
     onNoteItemClick: (Note) -> Unit,
-    onCreateNewNoteButtonClick: () -> Unit
+    onCreateNewNoteButtonClick: () -> Unit,
+    onNoteDismissed: (Note) -> Unit
 ) {
     var currentSearchQuery by remember { mutableStateOf("") }
     var isSearchBarActive by remember { mutableStateOf(false) }
@@ -100,11 +104,16 @@ fun HomeScreen(
                         currentSearchQuery = ""
                         onSearchQueryChange("")
                     },
-                    suggestionsForQuery = notesForSearchQuery
+                    suggestionsForQuery = notesForSearchQuery,
+                    onNoteDismissed = onNoteDismissed
                 )
             }
             if (!isSearchBarActive) {
-                noteItems(notes = savedNotes, onClick = { onNoteItemClick(it) })
+                noteItems(
+                    notes = savedNotes,
+                    onClick = { onNoteItemClick(it) },
+                    onDismissed = onNoteDismissed
+                )
             }
         }
         FloatingActionButton(
@@ -127,6 +136,7 @@ private fun AnimatedSearchBar(
     onClearSearchQueryButtonClick: () -> Unit,
     onActiveChange: (Boolean) -> Unit,
     onBackButtonClick: () -> Unit,
+    onNoteDismissed: (Note) -> Unit,
     modifier: Modifier = Modifier,
     suggestionsForQuery: List<Note>
 ) {
@@ -178,21 +188,30 @@ private fun AnimatedSearchBar(
                     .fillMaxSize()
                     .padding(top = 8.dp)
             ) {
-                noteItems(notes = suggestionsForQuery, onClick = {/*TODO*/ })
+                noteItems(
+                    notes = suggestionsForQuery,
+                    onClick = {/*TODO*/ },
+                    onDismissed = onNoteDismissed
+                )
             }
         }
     }
 }
 
 @ExperimentalMaterial3Api
-private fun LazyListScope.noteItems(notes: List<Note>, onClick: (Note) -> Unit) {
+private fun LazyListScope.noteItems(
+    notes: List<Note>,
+    onClick: (Note) -> Unit,
+    onDismissed: (Note) -> Unit
+) {
     items(notes) {
-        NoteListCard(
+        SwipeableNoteListCard(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 8.dp, horizontal = 16.dp),
             savedNote = it,
-            onClick = { onClick(it) }
+            onClick = { onClick(it) },
+            onDismissed = { onDismissed(it) }
         )
     }
 }
