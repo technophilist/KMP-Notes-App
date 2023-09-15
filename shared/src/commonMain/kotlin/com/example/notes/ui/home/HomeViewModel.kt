@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
-    notesRepository: NotesRepository,
+    private val notesRepository: NotesRepository,
     private val viewModelScope: CoroutineScope
 ) {
 
@@ -55,6 +55,10 @@ class HomeViewModel(
                 it.copy(isLoadingSearchResults = false)
             }
         }
+    }
+
+    fun deleteNote(note: Note) {
+        viewModelScope.launch { notesRepository.deleteNote(note) }
     }
 
 }
