@@ -5,12 +5,17 @@ import androidx.lifecycle.viewModelScope
 import com.example.notes.data.NotesRepository
 import com.example.notes.domain.Note
 import com.example.notes.ui.home.HomeViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 
-class AndroidHomeViewModel(notesRepository: NotesRepository) : ViewModel() {
+class AndroidHomeViewModel(
+    notesRepository: NotesRepository,
+    defaultDispatcher: CoroutineDispatcher
+) : ViewModel() {
 
     private val viewModel = HomeViewModel(
         notesRepository = notesRepository,
-        viewModelScope = viewModelScope
+        viewModelScope = viewModelScope,
+        defaultDispatcher = defaultDispatcher
     )
 
     val uiState = viewModel.uiState

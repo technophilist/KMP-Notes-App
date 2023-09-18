@@ -28,7 +28,10 @@ fun NotesAppNavigation(
     ) {
         composable(route = NavigationDestinations.HomeScreen.route) {
             val viewModel = viewModel {
-                AndroidHomeViewModel(notesRepository = appModule.provideNotesRepository())
+                AndroidHomeViewModel(
+                    notesRepository = appModule.provideNotesRepository(),
+                    defaultDispatcher = appModule.provideDispatchersProvider().defaultDispatcher
+                )
             }
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
             HomeScreen(

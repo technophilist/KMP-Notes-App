@@ -2,6 +2,7 @@ package com.example.notes.ui.home
 
 import com.example.notes.data.NotesRepository
 import com.example.notes.domain.Note
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,7 +13,8 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val notesRepository: NotesRepository,
-    private val viewModelScope: CoroutineScope
+    private val viewModelScope: CoroutineScope,
+    private val defaultDispatcher: CoroutineDispatcher
 ) {
 
     /**
