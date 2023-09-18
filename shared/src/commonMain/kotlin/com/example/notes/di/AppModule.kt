@@ -7,4 +7,10 @@ expect class AppModule {
      * Provides an implementation of [NotesRepository]
      */
     fun provideNotesRepository(): NotesRepository
+
+    /**
+     * Used to provide an instance of [DispatchersProvider]
+     */
+    fun provideDispatchersProvider(): DispatchersProvider
+
 }

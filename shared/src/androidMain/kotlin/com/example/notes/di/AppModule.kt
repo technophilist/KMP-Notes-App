@@ -22,4 +22,6 @@ actual class AppModule(context: Context) {
         )
         return DefaultNotesRepository(localNotesDataSource = localNotesDataSource)
     }
+
+    actual fun provideDispatchersProvider(): DispatchersProvider = DispatchersProvider()
 }
