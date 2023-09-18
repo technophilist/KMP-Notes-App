@@ -4,8 +4,10 @@ import com.example.notes.data.NotesRepository
 import com.example.notes.domain.Note
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
@@ -32,21 +34,20 @@ class HomeViewModel(
             _uiState.update { it.copy(isLoadingSavedNotes = false, savedNotes = savedNotesList) }
         }.launchIn(viewModelScope)
 
-        currentSearchText.debounce(200).onEach { searchText ->
-            _uiState.update { it.copy(isLoadingSearchResults = true) }
-            val savedNotes = _uiState.value.savedNotes
+        combine(
+            uiState,
+            currentSearchText.debounce(200)
+        ) { updatedUiState, searchText ->
+            val savedNotes = updatedUiState.savedNotes
             // filtering notes with titles containing the search text
+            _uiState.update { it.copy(isLoadingSearchResults = true) }
             val notesWithTitleContainingSearchText = savedNotes.filter {
                 it.title.contains(searchText, ignoreCase = true)
             }
             _uiState.update { it.copy(searchResults = notesWithTitleContainingSearchText) }
-        }.flowOn(defaultDispatcher)
-            .launchIn(viewModelScope)
 
-        currentSearchText.debounce(200).onEach { searchText ->
-            val savedNotes = _uiState.value.savedNotes
-            // filtering notes with the content containing the search text
-            // since this is slower than the previous filtering operation above,
+            // filtering notes with the content containing the search text.
+            // Since this is slower than the previous filtering operation above,
             // update ui state independently
             val notesWithContentContainingSearchText = savedNotes.filter {
                 it.content.contains(searchText, ignoreCase = true)
@@ -57,8 +58,9 @@ class HomeViewModel(
             _uiState.update {
                 it.copy(isLoadingSearchResults = false)
             }
-        }.flowOn(defaultDispatcher)
-            .launchIn(viewModelScope)
+
+        }.flowOn(defaultDispatcher).launchIn(viewModelScope)
+
     }
 
     /**
