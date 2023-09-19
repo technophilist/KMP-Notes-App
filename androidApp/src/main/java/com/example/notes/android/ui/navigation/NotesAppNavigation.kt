@@ -45,7 +45,8 @@ fun NotesAppNavigation(
                     val route = NavigationDestinations.NoteDetailScreen.buildRoute()
                     navController.navigate(route)
                 },
-                onNoteDismissed = viewModel::deleteNote
+                onNoteDismissed = viewModel::deleteNote,
+                onUndoDeleteButtonClick = { /*TODO*/ }
             )
         }
 

@@ -25,11 +25,15 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.SearchBar
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,6 +42,7 @@ import androidx.compose.ui.unit.dp
 import com.example.notes.android.ui.components.SwipeableNoteListCard
 import com.example.notes.domain.Note
 import com.example.notes.ui.home.HomeScreenUiState
+import kotlinx.coroutines.launch
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -48,7 +53,8 @@ fun HomeScreen(
     onSearchQueryChange: (String) -> Unit,
     onNoteItemClick: (Note) -> Unit,
     onCreateNewNoteButtonClick: () -> Unit,
-    onNoteDismissed: (Note) -> Unit
+    onNoteDismissed: (Note) -> Unit,
+    onUndoDeleteButtonClick: () -> Unit
 ) {
     HomeScreen(
         modifier = modifier,
@@ -57,7 +63,8 @@ fun HomeScreen(
         onSearchQueryChange = onSearchQueryChange,
         onNoteItemClick = onNoteItemClick,
         onCreateNewNoteButtonClick = onCreateNewNoteButtonClick,
-        onNoteDismissed = onNoteDismissed
+        onNoteDismissed = onNoteDismissed,
+        onUndoDeleteButtonClick = onUndoDeleteButtonClick
     )
 }
 
@@ -70,10 +77,22 @@ fun HomeScreen(
     onSearchQueryChange: (String) -> Unit,
     onNoteItemClick: (Note) -> Unit,
     onCreateNewNoteButtonClick: () -> Unit,
-    onNoteDismissed: (Note) -> Unit
+    onNoteDismissed: (Note) -> Unit,
+    onUndoDeleteButtonClick: () -> Unit
 ) {
     var currentSearchQuery by remember { mutableStateOf("") }
     var isSearchBarActive by remember { mutableStateOf(false) }
+    val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
+    val onNoteDismissedCallback = { dismissedNote: Note ->
+        onNoteDismissed(dismissedNote)
+        coroutineScope.launch {
+            snackbarHostState.currentSnackbarData?.dismiss()
+            val snackbarResult =
+                snackbarHostState.showSnackbar(message = "Note deleted", actionLabel = "Undo")
+            if (snackbarResult == SnackbarResult.ActionPerformed) onUndoDeleteButtonClick()
+        }
+    }
     Box(modifier = modifier) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
@@ -98,7 +117,7 @@ fun HomeScreen(
                         onSearchQueryChange("")
                     },
                     suggestionsForQuery = notesForSearchQuery,
-                    onNoteDismissed = onNoteDismissed,
+                    onNoteDismissed = { onNoteDismissedCallback(it) },
                     onNoteItemClick = onNoteItemClick
                 )
             }
@@ -106,7 +125,7 @@ fun HomeScreen(
                 noteItems(
                     notes = savedNotes,
                     onClick = { onNoteItemClick(it) },
-                    onDismissed = onNoteDismissed
+                    onDismissed = { onNoteDismissedCallback(it) }
                 )
             }
         }
@@ -117,6 +136,10 @@ fun HomeScreen(
                 .padding(16.dp),
             onClick = onCreateNewNoteButtonClick,
             content = { Icon(imageVector = Icons.Filled.Add, contentDescription = null) }
+        )
+        SnackbarHost(
+            modifier = Modifier.align(Alignment.BottomCenter),
+            hostState = snackbarHostState
         )
     }
 }
