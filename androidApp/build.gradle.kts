@@ -54,4 +54,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+
+    // work manager
+    implementation("androidx.work:work-runtime-ktx:2.8.1")
 }
