@@ -40,7 +40,7 @@ class DefaultLocalNotesDataSource(
         queries.markNoteAsNotDeleted(id)
     }
 
-    override suspend fun deleteAllNotes() = withContext(ioDispatcher) {
-        queries.deleteAllNotes()
+    override suspend fun deleteAllNotesMarkedAsDeleted() = withContext(ioDispatcher) {
+        queries.deleteAllNotesMarkedAsDeleted()
     }
 }

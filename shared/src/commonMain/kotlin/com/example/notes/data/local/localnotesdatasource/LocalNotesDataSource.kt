@@ -34,8 +34,8 @@ interface LocalNotesDataSource {
     suspend fun markNoteAsNotDeleted(id: String)
 
     /**
-     * Used to delete all saved notes.
+     * Used to delete all saved notes marked as deleted.
      */
-    suspend fun deleteAllNotes()
+    suspend fun deleteAllNotesMarkedAsDeleted()
 }
 
