@@ -2,6 +2,7 @@ package com.example.notes.ui.home
 
 import com.example.notes.data.NotesRepository
 import com.example.notes.domain.Note
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
@@ -9,6 +10,7 @@ import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
+import kotlinx.datetime.Clock
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertTrue
@@ -18,12 +20,13 @@ class HomeViewModelTest {
 
     private lateinit var homeViewModel: HomeViewModel
     private val testScope = TestScope(context = StandardTestDispatcher())
-    private val savedNotes = List(10) {
+    private val savedNotes = List(10) { index ->
         Note(
-            id = it.toLong(),
-            title = "Note #$it",
-            content = "Note #$it",
-            isDeleted = false
+            id = index.toString(),
+            title = "Note #$index",
+            content = "Note #$index",
+            isDeleted = false,
+            createdAtTimestampMillis = Clock.System.now().epochSeconds * index
         )
     }
 
@@ -47,7 +50,8 @@ class HomeViewModelTest {
 
         homeViewModel = HomeViewModel(
             notesRepository = notesRepositoryMock,
-            viewModelScope = testScope
+            viewModelScope = testScope,
+            defaultDispatcher = StandardTestDispatcher()
         )
     }
 
