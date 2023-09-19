@@ -46,7 +46,7 @@ fun NotesAppNavigation(
                     navController.navigate(route)
                 },
                 onNoteDismissed = viewModel::deleteNote,
-                onUndoDeleteButtonClick = { /*TODO*/ }
+                onUndoDeleteButtonClick = viewModel::restoreRecentlyDeletedNote
             )
         }
 
