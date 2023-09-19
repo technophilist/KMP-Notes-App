@@ -27,7 +27,7 @@ ORDER BY savedNoteEntity.createdAtTimestamp DESC;
 deleteNote:
 DELETE FROM savedNoteEntity WHERE id == :id;
 
-deleteAllNotes:
-DELETE FROM savedNoteEntity;
+deleteAllNotesMarkedAsDeleted:
+DELETE FROM savedNoteEntity WHERE savedNoteEntity.isDeleted == 1;
 
 
