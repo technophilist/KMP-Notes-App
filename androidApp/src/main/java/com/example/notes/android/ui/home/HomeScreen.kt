@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
@@ -138,7 +139,10 @@ fun HomeScreen(
             content = { Icon(imageVector = Icons.Filled.Add, contentDescription = null) }
         )
         SnackbarHost(
-            modifier = Modifier.align(Alignment.BottomCenter),
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .imePadding()
+                .navigationBarsPadding(),
             hostState = snackbarHostState
         )
     }
