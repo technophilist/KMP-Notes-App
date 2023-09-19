@@ -119,7 +119,7 @@ class DefaultLocalNotesDataSourceTest {
                 localNotesDataSource.savedNotesStream.first()
                     .containsAll(previouslySavedNoteEntities)
             )
-            localNotesDataSource.deleteAllNotes()
+            localNotesDataSource.deleteAllNotesMarkedAsDeleted()
             assert(localNotesDataSource.savedNotesStream.first().isEmpty())
         }
 

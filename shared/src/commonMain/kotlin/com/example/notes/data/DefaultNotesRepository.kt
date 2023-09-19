@@ -24,7 +24,7 @@ class DefaultNotesRepository(
         localNotesDataSource.markNoteAsDeleted(note.id)
     }
 
-    override suspend fun deleteAllNotes() {
-        localNotesDataSource.deleteAllNotes()
+    override suspend fun deleteAllNotesMarkedAsDeleted() {
+        localNotesDataSource.deleteAllNotesMarkedAsDeleted()
     }
 }

@@ -43,7 +43,7 @@ class HomeViewModelTest {
                 TODO("Not yet implemented")
             }
 
-            override suspend fun deleteAllNotes() {
+            override suspend fun deleteAllNotesMarkedAsDeleted() {
                 TODO("Not yet implemented")
             }
         }

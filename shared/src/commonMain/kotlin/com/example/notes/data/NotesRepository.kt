@@ -23,6 +23,6 @@ interface NotesRepository {
     /**
      * Used to delete all saved [Note]s.
      */
-    suspend fun deleteAllNotes()
+    suspend fun deleteAllNotesMarkedAsDeleted()
 
 }
