@@ -28,6 +28,7 @@ class HomeViewModel(
     val uiState = _uiState as StateFlow<HomeScreenUiState>
 
     private val currentSearchText = MutableStateFlow("")
+    private var recentlyDeletedNote: Note? = null
 
     init {
         notesRepository.savedNotesStream.onEach { savedNotesList ->
@@ -71,9 +72,15 @@ class HomeViewModel(
     }
 
     fun deleteNote(note: Note) {
-        viewModelScope.launch { notesRepository.deleteNote(note) }
+        viewModelScope.launch {
+            notesRepository.deleteNote(note)
+            recentlyDeletedNote = note
+        }
     }
 
+    fun restoreRecentlyDeletedNote() {
+        viewModelScope.launch { recentlyDeletedNote?.let { notesRepository.saveNote(it) } }
+    }
 }
 
 

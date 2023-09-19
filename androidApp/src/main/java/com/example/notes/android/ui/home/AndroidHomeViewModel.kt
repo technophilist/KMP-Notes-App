@@ -21,4 +21,5 @@ class AndroidHomeViewModel(
     val uiState = viewModel.uiState
     fun search(searchText: String) = viewModel.search(searchText)
     fun deleteNote(note: Note) = viewModel.deleteNote(note)
+    fun restoreRecentlyDeletedNote() = viewModel.restoreRecentlyDeletedNote()
 }
