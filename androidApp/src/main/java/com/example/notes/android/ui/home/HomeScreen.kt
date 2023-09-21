@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
@@ -38,8 +37,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.graphics.toComposeRect
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.window.layout.WindowMetricsCalculator
 import com.example.notes.android.ui.components.SwipeableNoteListCard
 import com.example.notes.domain.Note
 import com.example.notes.ui.home.HomeScreenUiState
@@ -100,9 +101,11 @@ fun HomeScreen(
             contentPadding = WindowInsets.navigationBars.asPaddingValues()
         ) {
             item {
+                // Do not add status bars padding to AnimatedSearchBar.
+                // If the padding is added, then the search bar wouldn't
+                // fill the entire screen when it is expanded.
                 AnimatedSearchBar(
                     modifier = Modifier
-                        .statusBarsPadding()
                         .fillMaxWidth()
                         .padding(bottom = 8.dp),
                     query = currentSearchQuery,
@@ -162,8 +165,6 @@ private fun AnimatedSearchBar(
     modifier: Modifier = Modifier,
     suggestionsForQuery: List<Note>
 ) {
-    val screenWidth = LocalConfiguration.current.screenWidthDp.dp
-    val screenHeight = LocalConfiguration.current.screenHeightDp.dp
     val leadingIcon = @Composable {
         AnimatedContent(targetState = isSearchBarActive, label = "") { isActive ->
             if (isActive) {
@@ -186,13 +187,21 @@ private fun AnimatedSearchBar(
             }
         }
     }
+    val context = LocalContext.current
+    val windowSizeWithoutInsets = remember {
+        WindowMetricsCalculator.getOrCreate()
+            .computeCurrentWindowMetrics(context)
+            .bounds
+            .toComposeRect()
+            .size
+    }
     Column(modifier = modifier) {
         SearchBar(
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .sizeIn(
-                    maxWidth = screenWidth, // need sizeIn modifier to prevent exception being thrown about size being set to infinity
-                    maxHeight = screenHeight
+                    maxWidth = windowSizeWithoutInsets.width.dp, // need sizeIn modifier to prevent exception being thrown about size being set to infinity when search bar is expanded
+                    maxHeight = windowSizeWithoutInsets.height.dp
                 ),
             query = query,
             onQueryChange = onQueryChange,
