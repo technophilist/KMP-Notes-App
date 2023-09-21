@@ -25,6 +25,7 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.SearchBar
+import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
@@ -91,7 +92,11 @@ fun HomeScreen(
         coroutineScope.launch {
             snackbarHostState.currentSnackbarData?.dismiss()
             val snackbarResult =
-                snackbarHostState.showSnackbar(message = "Note deleted", actionLabel = "Undo")
+                snackbarHostState.showSnackbar(
+                    message = "Note deleted",
+                    actionLabel = "Undo",
+                    duration = SnackbarDuration.Short
+                )
             if (snackbarResult == SnackbarResult.ActionPerformed) onUndoDeleteButtonClick()
         }
     }
