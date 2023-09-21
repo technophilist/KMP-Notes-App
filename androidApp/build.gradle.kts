@@ -57,4 +57,7 @@ dependencies {
 
     // work manager
     implementation("androidx.work:work-runtime-ktx:2.8.1")
+
+    // window dependency to get the size of the screen without insets
+    implementation("androidx.window:window:1.1.0")
 }
