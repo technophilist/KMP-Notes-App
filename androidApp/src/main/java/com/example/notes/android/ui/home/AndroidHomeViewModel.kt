@@ -14,7 +14,7 @@ class AndroidHomeViewModel(
 
     private val viewModel = HomeViewModel(
         notesRepository = notesRepository,
-        viewModelScope = viewModelScope,
+        coroutineScope = viewModelScope,
         defaultDispatcher = defaultDispatcher
     )
 

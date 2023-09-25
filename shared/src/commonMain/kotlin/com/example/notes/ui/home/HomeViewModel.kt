@@ -5,6 +5,7 @@ import com.example.notes.domain.Note
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.IO
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
@@ -17,9 +18,12 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val notesRepository: NotesRepository,
-    private val viewModelScope: CoroutineScope,
+    coroutineScope: CoroutineScope?,
     defaultDispatcher: CoroutineDispatcher
 ) {
+
+    private val viewModelScope =
+        coroutineScope ?: CoroutineScope(defaultDispatcher + SupervisorJob())
 
     /**
      * The current [HomeScreenUiState]
