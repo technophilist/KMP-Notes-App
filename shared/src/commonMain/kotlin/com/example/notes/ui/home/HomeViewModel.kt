@@ -2,6 +2,8 @@ package com.example.notes.ui.home
 
 import com.example.notes.data.NotesRepository
 import com.example.notes.domain.Note
+import com.example.notes.utils.NativeStateFlow
+import com.example.notes.utils.asNativeStateFlow
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.IO
@@ -29,7 +31,7 @@ class HomeViewModel(
      * The current [HomeScreenUiState]
      */
     private val _uiState = MutableStateFlow(HomeScreenUiState(isLoadingSavedNotes = true))
-    val uiState = _uiState as StateFlow<HomeScreenUiState>
+    val uiState = _uiState.asNativeStateFlow()
 
     private val currentSearchText = MutableStateFlow("")
     private var recentlyDeletedNote: Note? = null
