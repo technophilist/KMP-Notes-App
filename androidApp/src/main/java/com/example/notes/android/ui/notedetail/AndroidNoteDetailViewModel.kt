@@ -18,7 +18,7 @@ class AndroidNoteDetailViewModel(
     private val viewModel = NoteDetailViewModel(
         currentNoteId = savedStateHandle.get<String>(NavigationDestinations.NoteDetailScreen.NAV_ARG_NOTE_ID),
         notesRepository = notesRepository,
-        viewModelScope = viewModelScope
+        coroutineScope = viewModelScope
     )
 
     val titleTextStream = viewModel.titleTextStream

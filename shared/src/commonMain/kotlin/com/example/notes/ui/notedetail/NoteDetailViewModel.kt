@@ -4,7 +4,9 @@ import com.example.notes.data.NotesRepository
 import com.example.notes.domain.Note
 import com.example.notes.utils.UUID
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
@@ -23,8 +25,11 @@ import kotlin.coroutines.EmptyCoroutineContext
 class NoteDetailViewModel(
     private val currentNoteId: String?,
     private val notesRepository: NotesRepository,
-    viewModelScope: CoroutineScope
+    coroutineScope: CoroutineScope?
 ) {
+
+    private val viewModelScope =
+        coroutineScope ?: CoroutineScope(Dispatchers.Main + SupervisorJob())
 
     private val _titleText = MutableStateFlow("")
     val titleTextStream = _titleText as StateFlow<String>
