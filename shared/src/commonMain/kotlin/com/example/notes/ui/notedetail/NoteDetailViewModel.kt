@@ -3,6 +3,7 @@ package com.example.notes.ui.notedetail
 import com.example.notes.data.NotesRepository
 import com.example.notes.domain.Note
 import com.example.notes.utils.UUID
+import com.example.notes.utils.asNativeStateFlow
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
@@ -32,10 +33,10 @@ class NoteDetailViewModel(
         coroutineScope ?: CoroutineScope(Dispatchers.Main + SupervisorJob())
 
     private val _titleText = MutableStateFlow("")
-    val titleTextStream = _titleText as StateFlow<String>
+    val titleTextStream = _titleText.asNativeStateFlow()
 
     private val _contentText = MutableStateFlow("")
-    val contentTextStream = _contentText as StateFlow<String>
+    val contentTextStream = _contentText.asNativeStateFlow()
 
     private lateinit var currentNote: Note
 
