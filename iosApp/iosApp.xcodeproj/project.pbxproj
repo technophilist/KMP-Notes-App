@@ -12,6 +12,7 @@
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		E74F64442AC304DC0095AFFF /* IOSHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F64432AC304DC0095AFFF /* IOSHomeViewModel.swift */; };
+		E74F64462AC305A20095AFFF /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F64452AC305A20095AFFF /* HomeScreen.swift */; };
 		E7F92DB52AC1C36900DCA46B /* NoteListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F92DB42AC1C36900DCA46B /* NoteListCard.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E74F64432AC304DC0095AFFF /* IOSHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSHomeViewModel.swift; sourceTree = "<group>"; };
+		E74F64452AC305A20095AFFF /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		E7F92DB42AC1C36900DCA46B /* NoteListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				E74F64432AC304DC0095AFFF /* IOSHomeViewModel.swift */,
+				E74F64452AC305A20095AFFF /* HomeScreen.swift */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				E74F64462AC305A20095AFFF /* HomeScreen.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				E7F92DB52AC1C36900DCA46B /* NoteListCard.swift in Sources */,
 				E74F64442AC304DC0095AFFF /* IOSHomeViewModel.swift in Sources */,
