@@ -13,6 +13,7 @@
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		E74F64442AC304DC0095AFFF /* IOSHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F64432AC304DC0095AFFF /* IOSHomeViewModel.swift */; };
 		E74F64462AC305A20095AFFF /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F64452AC305A20095AFFF /* HomeScreen.swift */; };
+		E796AFB02AC4950900F72A33 /* NoteDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E796AFAF2AC4950900F72A33 /* NoteDetailScreen.swift */; };
 		E7F92DB52AC1C36900DCA46B /* NoteListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F92DB42AC1C36900DCA46B /* NoteListCard.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E74F64432AC304DC0095AFFF /* IOSHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSHomeViewModel.swift; sourceTree = "<group>"; };
 		E74F64452AC305A20095AFFF /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		E796AFAF2AC4950900F72A33 /* NoteDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailScreen.swift; sourceTree = "<group>"; };
 		E7F92DB42AC1C36900DCA46B /* NoteListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +99,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E796AFAE2AC494FC00F72A33 /* notedetail */ = {
+			isa = PBXGroup;
+			children = (
+				E796AFAF2AC4950900F72A33 /* NoteDetailScreen.swift */,
+			);
+			path = notedetail;
+			sourceTree = "<group>";
+		};
 		E7F92DAB2AC1C1B500DCA46B /* ui */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +127,7 @@
 		E7F92DAD2AC1C1C400DCA46B /* home */ = {
 			isa = PBXGroup;
 			children = (
+				E796AFAE2AC494FC00F72A33 /* notedetail */,
 				E74F64432AC304DC0095AFFF /* IOSHomeViewModel.swift */,
 				E74F64452AC305A20095AFFF /* HomeScreen.swift */,
 			);
@@ -219,6 +230,7 @@
 				E74F64462AC305A20095AFFF /* HomeScreen.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				E7F92DB52AC1C36900DCA46B /* NoteListCard.swift in Sources */,
+				E796AFB02AC4950900F72A33 /* NoteDetailScreen.swift in Sources */,
 				E74F64442AC304DC0095AFFF /* IOSHomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
