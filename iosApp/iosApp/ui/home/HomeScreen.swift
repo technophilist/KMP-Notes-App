@@ -4,7 +4,6 @@ import shared
 
 struct HomeScreen : View {
     @ObservedObject private var homeViewModel:IOSHomeViewModel
-    @State private var searchText = ""
     
     init(appModule: AppModule) {
         self.homeViewModel = IOSHomeViewModel(
