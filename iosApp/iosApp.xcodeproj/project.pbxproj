@@ -113,6 +113,7 @@
 		E7F92DAB2AC1C1B500DCA46B /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				E796AFAE2AC494FC00F72A33 /* notedetail */,
 				E7F92DAD2AC1C1C400DCA46B /* home */,
 				E7F92DAC2AC1C1BE00DCA46B /* components */,
 			);
@@ -130,7 +131,6 @@
 		E7F92DAD2AC1C1C400DCA46B /* home */ = {
 			isa = PBXGroup;
 			children = (
-				E796AFAE2AC494FC00F72A33 /* notedetail */,
 				E74F64432AC304DC0095AFFF /* IOSHomeViewModel.swift */,
 				E74F64452AC305A20095AFFF /* HomeScreen.swift */,
 			);
