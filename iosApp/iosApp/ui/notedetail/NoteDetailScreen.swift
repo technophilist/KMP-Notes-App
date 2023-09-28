@@ -22,7 +22,8 @@ struct NoteDetailScreen : View {
                 .onChange(of: noteDetailViewModel.contentText){ noteDetailViewModel.onContentChange($0) }
                 .font(.headline)
             
-        }.frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .topLeading)
-            .padding(.horizontal)
+        }
+        .padding(.horizontal)
+        .background(Color.red)
     }
 }
