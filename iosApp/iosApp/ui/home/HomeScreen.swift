@@ -26,5 +26,6 @@ struct HomeScreen : View {
                 Image(systemName: "plus")
             }
         }
+        .navigationTitle("Notes")
     }
 }
