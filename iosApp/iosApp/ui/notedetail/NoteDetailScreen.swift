@@ -14,7 +14,7 @@ struct NoteDetailScreen : View {
     
     var body : some View {
         VStack(alignment: .center) {
-            TextField("Title",text: $noteDetailViewModel.contentText,axis: .vertical)
+            TextField("Title",text: $noteDetailViewModel.titleText,axis: .vertical)
                 .onChange(of: noteDetailViewModel.contentText){ noteDetailViewModel.onTitleChange($0) }
                 .font(.largeTitle.weight(.bold))
             
