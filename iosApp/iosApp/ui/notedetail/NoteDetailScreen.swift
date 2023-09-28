@@ -24,6 +24,6 @@ struct NoteDetailScreen : View {
             
         }
         .padding(.horizontal)
-        .background(Color.red)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
