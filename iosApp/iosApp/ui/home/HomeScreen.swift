@@ -4,8 +4,10 @@ import shared
 
 struct HomeScreen : View {
     @ObservedObject private var homeViewModel:IOSHomeViewModel
+    private let appModule:AppModule
     
     init(appModule: AppModule) {
+        self.appModule = appModule
         self.homeViewModel = IOSHomeViewModel(
             notesRepository: appModule.provideNotesRepository(),
             dispatchersProvider: appModule.provideDispatchersProvider()
@@ -19,5 +21,10 @@ struct HomeScreen : View {
         }
         .searchable(text: $homeViewModel.searchText)
         .onDisappear{ homeViewModel.dispose() }
+        .toolbar {
+            NavigationLink(destination: NoteDetailScreen(appModule: appModule)){
+                Image(systemName: "plus")
+            }
+        }
     }
 }
