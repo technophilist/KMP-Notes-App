@@ -25,5 +25,6 @@ struct NoteDetailScreen : View {
         }
         .padding(.horizontal)
         .navigationBarTitleDisplayMode(.inline)
+        .onDisappear { noteDetailViewModel.dispose() }
     }
 }
