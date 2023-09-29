@@ -8,11 +8,13 @@ struct NoteDetailScreen : View {
     @State var titleText = ""
     @State var contentText = ""
     
-    init(appModule:AppModule) {
+    init(appModule:AppModule, note:Note? = nil) {
         self.noteDetailViewModel = IOSNoteDetailViewModel(
             notesRepository: appModule.provideNotesRepository(),
-            currentNoteId: nil
+            currentNoteId: note?.id
         )
+        titleText = note?.title ?? ""
+        contentText = note?.content ?? ""
     }
     
     var body : some View {
