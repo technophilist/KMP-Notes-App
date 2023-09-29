@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.StateFlow
 /**
  * A cross platform implementation of [StateFlow].
  */
-expect class NativeStateFlow<T>(source: Flow<T>) : Flow<T>
+expect class NativeStateFlow<T>(source: StateFlow<T>) : StateFlow<T>
 
 /**
  * Used to convert a [StateFlow] to a [NativeStateFlow]
