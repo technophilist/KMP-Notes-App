@@ -5,7 +5,9 @@ extension NoteDetailScreen {
     class IOSNoteDetailViewModel : ObservableObject {
         
         private var noteDetailViewModel: NoteDetailViewModel
-
+        private var titleTextStreamHandle: Kotlinx_coroutines_coreDisposableHandle? = nil
+        private var contentTextStreamHandle: Kotlinx_coroutines_coreDisposableHandle? = nil
+        
         @Published var titleText = ""
         @Published var contentText = ""
         
@@ -15,7 +17,7 @@ extension NoteDetailScreen {
                 notesRepository: notesRepository,
                 coroutineScope: nil
             )
-            noteDetailViewModel.titleTextStream.collect { updatedTitle in
+            titleTextStreamHandle = noteDetailViewModel.titleTextStream.collect { updatedTitle in
                 self.titleText = updatedTitle! as String
             }
             noteDetailViewModel.contentTextStream.collect { updatedContent in
@@ -29,6 +31,11 @@ extension NoteDetailScreen {
         
         func onContentChange(_ newContent:String){
             noteDetailViewModel.onContentChange(newContent: newContent)
+        }
+        
+        func dispose(){
+            titleTextStreamHandle?.dispose()
+            contentTextStreamHandle?.dispose()
         }
     }
 }
