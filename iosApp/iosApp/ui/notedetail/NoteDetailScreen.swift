@@ -5,8 +5,8 @@ import SwiftUI
 struct NoteDetailScreen : View {
     @ObservedObject private var noteDetailViewModel:IOSNoteDetailViewModel
     
-    @State var titleText = ""
-    @State var contentText = ""
+    @State private var titleText = ""
+    @State private var contentText = ""
     
     init(appModule:AppModule, note:Note? = nil) {
         self.noteDetailViewModel = IOSNoteDetailViewModel(
