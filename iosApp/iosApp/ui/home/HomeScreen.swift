@@ -16,15 +16,19 @@ struct HomeScreen : View {
     var body: some View {
         List {
             ForEach(homeViewModel.uiState.savedNotes, id:\.self.id) { note in
-                NoteListCard(note: note)
-            }.onDelete {  indexSet in homeViewModel.deleteNotes(indexSet: indexSet) }
+                NavigationLink(
+                    destination: NoteDetailScreen(appModule: appModule,note:note),
+                    label: { NoteListCard(note: note) }
+                )
+            }.onDelete { indexSet in homeViewModel.deleteNotes(indexSet: indexSet) }
         }
         .searchable(text: $homeViewModel.searchText)
         .onDisappear{ homeViewModel.dispose() }
         .toolbar {
-            NavigationLink(destination: NoteDetailScreen(appModule: appModule)){
-                Image(systemName: "plus")
-            }
+            NavigationLink(
+                destination: NoteDetailScreen(appModule: appModule),
+                label: { Image(systemName: "plus") }
+            )
         }
         .navigationTitle("Notes")
     }
