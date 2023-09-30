@@ -6,7 +6,7 @@ struct NoteDetailScreen : View {
     @ObservedObject private var noteDetailViewModel:IOSNoteDetailViewModel
     
     @State private var titleText = ""
-    @State private var contentText = ""
+    @State private var contentText = "Content"
     
     init(appModule:AppModule, note:Note? = nil) {
         self.noteDetailViewModel = IOSNoteDetailViewModel(
