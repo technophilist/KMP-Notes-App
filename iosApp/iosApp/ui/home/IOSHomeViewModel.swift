@@ -23,7 +23,6 @@ extension HomeScreen{
                 coroutineScope: nil,
                 defaultDispatcher: dispatchersProvider.defaultDispatcher
             )
-          subscribeForUiStateUpdates()
         }
         
         func search(searchText: String) {

@@ -30,6 +30,7 @@ struct HomeScreen : View {
             )
         }
         .navigationTitle("Notes")
+        .onAppear { homeViewModel.subscribeForUiStateUpdates() }
         .onDisappear{ homeViewModel.unsubscribeForUiStateUpdates() }
     }
 }
