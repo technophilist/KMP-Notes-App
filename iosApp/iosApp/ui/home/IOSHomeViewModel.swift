@@ -23,11 +23,7 @@ extension HomeScreen{
                 coroutineScope: nil,
                 defaultDispatcher: dispatchersProvider.defaultDispatcher
             )
-            collectHandle = homeViewModel.uiState.collect { newUiState in
-                if(newUiState != nil){
-                    self.uiState = newUiState!
-                }
-            }
+          subscribeForUiStateUpdates()
         }
         
         func search(searchText: String) {
@@ -38,7 +34,15 @@ extension HomeScreen{
             indexSet.forEach { homeViewModel.deleteNote(note: uiState.savedNotes[$0]) }
         }
         
-        func dispose(){
+        func subscribeForUiStateUpdates(){
+            collectHandle = homeViewModel.uiState.collect { newUiState in
+                if(newUiState != nil){
+                    self.uiState = newUiState!
+                }
+            }
+        }
+        
+        func unsubscribeForUiStateUpdates(){
             collectHandle?.dispose()
         }
     }

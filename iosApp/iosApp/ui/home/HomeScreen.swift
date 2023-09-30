@@ -23,7 +23,6 @@ struct HomeScreen : View {
             }.onDelete { indexSet in homeViewModel.deleteNotes(indexSet: indexSet) }
         }
         .searchable(text: $homeViewModel.searchText)
-        .onDisappear{ homeViewModel.dispose() }
         .toolbar {
             NavigationLink(
                 destination: NoteDetailScreen(appModule: appModule),
@@ -31,5 +30,6 @@ struct HomeScreen : View {
             )
         }
         .navigationTitle("Notes")
+        .onDisappear{ homeViewModel.unsubscribeForUiStateUpdates() }
     }
 }
