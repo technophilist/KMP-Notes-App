@@ -8,7 +8,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             HomeScreen(appModule: appModule)
-        }
+        }.accentColor(.yellow)
     }
 }
 
