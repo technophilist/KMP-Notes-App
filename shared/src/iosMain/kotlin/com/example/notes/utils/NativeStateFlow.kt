@@ -1,18 +1,18 @@
 package com.example.notes.utils
 
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.DisposableHandle
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
 actual class NativeStateFlow<T> actual constructor(source: StateFlow<T>) : StateFlow<T> by source {
-    fun collect(onCollect: (T) -> Unit): DisposableHandle {
+
+    fun subscribe(onCollect: (T) -> Unit): DisposableHandle {
         val scope = MainScope().apply {
             launch(Dispatchers.Main) { collect(onCollect) }
         }
