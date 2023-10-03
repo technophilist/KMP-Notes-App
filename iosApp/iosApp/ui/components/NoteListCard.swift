@@ -13,8 +13,10 @@ struct NoteListCard : View{
                 .fontWeight(.bold)
                 .lineLimit(2)
             
-            Text(note.content)
-                .lineLimit(3)
+            if !note.content.isEmpty {
+                Text(note.content)
+                    .lineLimit(3)
+            }
         }
     }
 }
