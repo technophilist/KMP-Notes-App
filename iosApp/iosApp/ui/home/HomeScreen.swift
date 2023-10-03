@@ -4,7 +4,10 @@ import shared
 
 struct HomeScreen : View {
     @ObservedObject private var homeViewModel:IOSHomeViewModel
+    @State private var searchText = ""
+   
     private let appModule:AppModule
+
     
     init(appModule: AppModule) {
         self.appModule = appModule
@@ -15,14 +18,24 @@ struct HomeScreen : View {
     }
     var body: some View {
         List {
-            ForEach(homeViewModel.uiState.savedNotes, id:\.self.id) { note in
-                NavigationLink(
-                    destination: NoteDetailScreen(appModule: appModule,note:note),
-                    label: { NoteListCard(note: note) }
-                )
-            }.onDelete { indexSet in homeViewModel.deleteNotes(indexSet: indexSet) }
+            if !searchText.isEmpty {
+                ForEach(homeViewModel.uiState.searchResults, id:\.self.id) { note in
+                    NavigationLink(
+                        destination: NoteDetailScreen(appModule: appModule,note:note),
+                        label: { NoteListCard(note: note) }
+                    )
+                }.onDelete { indexSet in homeViewModel.deleteNotes(indexSet: indexSet) }
+            } else {
+                ForEach(homeViewModel.uiState.savedNotes, id:\.self.id) { note in
+                    NavigationLink(
+                        destination: NoteDetailScreen(appModule: appModule,note:note),
+                        label: { NoteListCard(note: note) }
+                    )
+                }.onDelete { indexSet in homeViewModel.deleteNotes(indexSet: indexSet) }
+            }
         }
-        .searchable(text: $homeViewModel.searchText)
+        .searchable(text: $searchText)
+        .onChange(of: searchText) { homeViewModel.search(searchText: $0) }
         .toolbar {
             NavigationLink(
                 destination: NoteDetailScreen(appModule: appModule),

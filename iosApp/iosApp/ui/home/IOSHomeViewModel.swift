@@ -9,7 +9,6 @@ extension HomeScreen{
         private var homeViewModel : HomeViewModel
         private var collectHandle : Kotlinx_coroutines_coreDisposableHandle? = nil
         
-        @Published var searchText = ""
         @Published var uiState: HomeScreenUiState = HomeScreenUiState(
             isLoadingSavedNotes: false,
             isLoadingSearchResults: false,
