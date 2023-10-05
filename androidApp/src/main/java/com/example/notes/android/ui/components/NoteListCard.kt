@@ -47,7 +47,8 @@ fun NoteListCard(
             Text(
                 text = savedNote.title,
                 style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                maxLines = 3
             )
             Text(
                 text = savedNote.content,
