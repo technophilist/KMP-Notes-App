@@ -8,3 +8,7 @@ Notes is a simple note taking app built with KMP(Kotlin Multiplatform), formerly
 
 ### IOS
 <img src = "screenshots/ios/home_screen.png" width = "240" height = "493"/> &nbsp; <img src = "screenshots/ios/search_screen.png" width = "240" height = "493"/> &nbsp;  <img src = "screenshots/ios/note_detail_screen.png" width = "240" height = "493"/>
+
+## Disclaimer
+I am primarily an Android developer and I learnt Swift and Swift UI on the fly, while I was developing the app. So there might be some slight issues with code quality on the ios side 
+of things. My focus was to get the ios app, up and running as soon as possible with the very limited amount of knoweldge that I had on Swift.
