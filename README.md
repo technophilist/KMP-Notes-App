@@ -29,5 +29,13 @@ Notes is a simple note taking app built with [KMP(Kotlin Multiplatform)](https:/
 ## High-level Architecture Diagram
 <img src = "screenshots/architecture_diagram.png"/>
 
+## Source code and Architecture
+- Uses MVVM architecture.
+- All concrete implementations in the common module are prefixed by the term “Default”.
+- Commit messages follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
+- The module structure is heavily based on the guidance mentioned in the ["Guide to architecture article"](https://developer.android.com/topic/architecture) posted on the offical android developers website.
+  
 ## Disclaimer
 I am primarily an Android developer and I learnt Swift and Swift UI on the fly, while I was developing the app. I am not familiar with ios development atall, so, there might be some slight issues with code quality on the ios side of things. My focus was to get the ios app, up and running as soon as possible with the very limited amount of knoweldge that I had on Swift.
+
+
