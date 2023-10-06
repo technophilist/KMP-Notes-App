@@ -13,6 +13,7 @@ Notes is a simple note taking app built with KMP(Kotlin Multiplatform), formerly
 
 ### Common
 - [Kotlin Coroutines](https://kotlinlang.org/docs/reference/coroutines/coroutines-guide.html) for threading.
+- [Kotlinx-coroutines-test](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-test/) for testing coroutines.
 - [Kotlin Flows](https://developer.android.com/kotlin/flow) for creating reactive streams.
 - [SQLDelight](https://github.com/cashapp/sqldelight) for local database.
 - [Kotlinx Date-Time API](https://github.com/Kotlin/kotlinx-datetime) for date/time operations.
