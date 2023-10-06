@@ -1,5 +1,5 @@
 # Notes - A multiplatform notes app built with Kotlin Multiplatform
-Notes is a simple note taking app built with KMP(Kotlin Multiplatform), formerly known as KMM (Kotlin Multiplatform Mobile). The app is supported on both iOS and Android.
+Notes is a simple note taking app built with [KMP(Kotlin Multiplatform)](https://kotlinlang.org/docs/multiplatform.html), formerly known as [KMM (Kotlin Multiplatform Mobile)](https://blog.jetbrains.com/kotlin/2023/07/update-on-the-name-of-kotlin-multiplatform/). The app is supported on both iOS and Android.
 
 ## Screenshots
 
