@@ -26,6 +26,16 @@ Notes is a simple note taking app built with [KMP(Kotlin Multiplatform)](https:/
 ### IOS
 - [Swift UI](https://developer.apple.com/xcode/swiftui/) for UI and navigation on IOS.
 
+## Notable features
+<dl>
+  <dt> Auto save 🪄 </dt>
+  <dd> The app automatically saves the changes made to a note in an efficient manner. This precludes the need for the user to click a save button after every change, thus, significantly improving the UX of the app.</dd>
+  <dt> Instant search 🔍 </dt>
+  <dd> The app instantly starts to search for notes that match the provided search term, as the search term is being typed, in an efficient manner. It not only looks for matches to the title of the notes but also checks for matches to the contents of the notes as well. This ensures that search results are returned to the user as soon as possible.</dd>
+  <dt> Native UI 🔮 </dt>
+  <dd> The UI looks and feels native on each supported paltform - Android and IOS. This is because the the UI is built completely using UI tool kits that are native to each platform. This ensures that the user gets a native looking app on both the platforms. </dd>
+</dl>
+
 ## High-level Architecture Diagram
 <img src = "screenshots/architecture_diagram.png"/>
 
@@ -37,5 +47,3 @@ Notes is a simple note taking app built with [KMP(Kotlin Multiplatform)](https:/
   
 ## Disclaimer
 I am primarily an Android developer and I learnt Swift and Swift UI on the fly, while I was developing the app. I am not familiar with ios development atall, so, there might be some slight issues with code quality on the ios side of things. My focus was to get the ios app, up and running as soon as possible with the very limited amount of knoweldge that I had on Swift.
-
-
