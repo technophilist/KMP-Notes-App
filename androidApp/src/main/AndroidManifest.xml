@@ -7,7 +7,9 @@
         android:allowBackup="false"
         android:label="Notes"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:icon="@mipmap/ic_launcher"
+        >
 
         <!-- Remove default initializer of work manager -->
         <provider
