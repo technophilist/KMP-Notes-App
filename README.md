@@ -48,6 +48,9 @@ Notes is a simple note taking app built with [KMP(Kotlin Multiplatform)](https:/
   <dd> The app instantly starts to search for notes that match the provided search term, as the search term is being typed, in an efficient manner. It not only looks for matches to the title of the notes but also checks for matches to the contents of the notes as well. This ensures that search results are returned to the user as soon as possible.</dd>
   <dt> Native UI 🔮 </dt>
   <dd> The UI looks and feels native on each supported paltform - Android and IOS. This is because the the UI is built completely using UI tool kits that are native to each platform. This ensures that the user gets a native looking app on both the platforms. </dd>
+    
+  <dt> Themed splash screen 🎨</dt>
+  <dd> In Android 12 and above, the background color of the splash screen matches the system theme. This minor detail, helps in improving the synergy of the app with the rest of the system from the moment the app is launched. </dd>    
 </dl>
 
 ## High-level Architecture Diagram
