@@ -18,6 +18,7 @@
             tools:node="remove" />
 
         <activity
+            android:theme="@style/Theme.Notes.SplashScreen"
             android:name="com.example.notes.android.ui.MainActivity"
             android:exported="true">
             <intent-filter>

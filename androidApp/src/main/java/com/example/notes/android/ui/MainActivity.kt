@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import android.content.res.Configuration
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.notes.android.NotesAppApplication
 import com.example.notes.android.ui.navigation.NotesAppNavigation
 import com.example.notes.android.ui.theme.NotesAppTheme
@@ -17,6 +18,7 @@ import com.example.notes.android.ui.theme.NotesAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         // make the app edge-to-edge
         WindowCompat.setDecorFitsSystemWindows(window, false)
