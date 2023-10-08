@@ -60,4 +60,8 @@ dependencies {
 
     // window dependency to get the size of the screen without insets
     implementation("androidx.window:window:1.1.0")
+
+    // splashscreen api
+    implementation("androidx.core:core-splashscreen:1.0.1")
+
 }
