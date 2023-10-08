@@ -35,6 +35,7 @@ Notes is a simple note taking app built with [KMP(Kotlin Multiplatform)](https:/
 
 ### Android
 - [Jetpack Compose](https://developer.android.com/jetpack/compose) for UI and navigation on Android.
+- [SplashScreen API](https://developer.android.com/develop/ui/views/launch/splash-screen) for displaying a splashscreen in a backwards compatible way.
 - [Work Manager](https://developer.android.com/topic/libraries/architecture/workmanager?gclid=EAIaIQobChMIwJy33ufG8QIVGcEWBR31Mwa-EAAYASAAEgIF3vD_BwE&gclsrc=aw.ds) for background tasks.
 
 ### IOS
