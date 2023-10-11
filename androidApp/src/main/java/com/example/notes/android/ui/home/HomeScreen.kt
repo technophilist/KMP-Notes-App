@@ -1,6 +1,7 @@
 package com.example.notes.android.ui.home
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
@@ -71,6 +72,7 @@ fun HomeScreen(
     )
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @ExperimentalMaterial3Api
 @Composable
 fun HomeScreen(
@@ -156,6 +158,7 @@ fun HomeScreen(
     }
 }
 
+@ExperimentalFoundationApi
 @ExperimentalMaterial3Api
 @Composable
 private fun AnimatedSearchBar(
@@ -234,17 +237,20 @@ private fun AnimatedSearchBar(
     }
 }
 
+
+@ExperimentalFoundationApi
 @ExperimentalMaterial3Api
 private fun LazyListScope.noteItems(
     notes: List<Note>,
     onClick: (Note) -> Unit,
     onDismissed: (Note) -> Unit
 ) {
-    items(notes) {
+    items(items = notes, key = { it.id }) {
         SwipeableNoteListCard(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp, horizontal = 16.dp),
+                .padding(vertical = 8.dp, horizontal = 16.dp)
+                .animateItemPlacement(),
             savedNote = it,
             onClick = { onClick(it) },
             onDismissed = { onDismissed(it) }
