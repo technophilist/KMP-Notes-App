@@ -52,6 +52,9 @@ Notes is a simple note taking app built with [KMP(Kotlin Multiplatform)](https:/
     
   <dt> Themed splash screen 🎨</dt>
   <dd> In Android 12 and above, the background color of the splash screen matches the system theme. This minor detail, helps in improving the synergy of the app with the rest of the system from the moment the app is launched. </dd>    
+
+  <dt> Themed App Icon 🦄 </dt>
+  <dd> The app also supports the "Themed Icons" feature available on Android 13 and later. If the user has opted in for the feature on a device that is running Android 13 and higher, the app's icon will be tinted to inherit the coloring of the user’s chosen wallpaper and other themes.</dd>
 </dl>
 
 ## High-level Architecture Diagram
