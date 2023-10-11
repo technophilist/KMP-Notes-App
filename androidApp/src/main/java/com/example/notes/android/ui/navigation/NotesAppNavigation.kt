@@ -1,5 +1,8 @@
 package com.example.notes.android.ui.navigation
 
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.slideOut
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -16,6 +19,7 @@ import com.example.notes.android.ui.home.HomeScreen
 import com.example.notes.android.ui.notedetail.AndroidNoteDetailViewModel
 import com.example.notes.android.ui.notedetail.NoteDetailScreen
 import com.example.notes.di.AppModule
+import androidx.compose.animation.AnimatedContentTransitionScope.SlideDirection
 
 @Composable
 fun NotesAppNavigation(
@@ -58,7 +62,9 @@ fun NotesAppNavigation(
                     nullable = true
                     defaultValue = null
                 }
-            )
+            ),
+            enterTransition = { slideIntoContainer(towards = SlideDirection.Start) },
+            exitTransition = { slideOutOfContainer(towards = SlideDirection.End) }
         ) {
             val viewModel = viewModel {
                 AndroidNoteDetailViewModel(
@@ -68,13 +74,18 @@ fun NotesAppNavigation(
             }
             val noteTitle by viewModel.titleTextStream.collectAsStateWithLifecycle()
             val noteContent by viewModel.contentTextStream.collectAsStateWithLifecycle()
-            NoteDetailScreen(
-                noteTitle = noteTitle,
-                noteContent = noteContent,
-                onNoteTitleChange = viewModel::onTitleChange,
-                onNoteContentChange = viewModel::onContentChange,
-                onBackButtonClick = navController::popBackStack
-            )
+            // Need a Surface composable to make an opaque background for the composable.
+            // Running a navigation animation without this would not look good because the
+            // composable, by default has a transparent background.
+            Surface {
+                NoteDetailScreen(
+                    noteTitle = noteTitle,
+                    noteContent = noteContent,
+                    onNoteTitleChange = viewModel::onTitleChange,
+                    onNoteContentChange = viewModel::onContentChange,
+                    onBackButtonClick = navController::popBackStack
+                )
+            }
         }
     }
 }
