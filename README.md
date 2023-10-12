@@ -21,6 +21,9 @@ Notes is a simple note taking app built with [KMP(Kotlin Multiplatform)](https:/
 ### Android
 https://github.com/t3chkid/KMP-Notes-App/assets/54663474/c1a77c4c-c6b6-4697-9398-7da3ac886dc6
 
+### IOS
+https://github.com/t3chkid/KMP-Notes-App/assets/54663474/9c6935bd-e9da-40c6-863b-7b9ffd09dc7d
+
 ## Screenshots
 
 ### Android
