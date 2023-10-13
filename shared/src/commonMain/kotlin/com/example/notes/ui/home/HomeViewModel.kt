@@ -7,6 +7,7 @@ import com.example.notes.utils.asNativeStateFlow
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.IO
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -24,8 +25,7 @@ class HomeViewModel(
     defaultDispatcher: CoroutineDispatcher
 ) {
 
-    private val viewModelScope =
-        coroutineScope ?: CoroutineScope(defaultDispatcher + SupervisorJob())
+    private val viewModelScope = coroutineScope ?: MainScope()
 
     /**
      * The current [HomeScreenUiState]
