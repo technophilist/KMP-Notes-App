@@ -34,9 +34,8 @@ extension HomeScreen{
         
         func subscribeForUiStateUpdates(){
             collectHandle = homeViewModel.uiState.subscribe { newUiState in
-                if(newUiState != nil){
-                    self.uiState = newUiState!
-                }
+                guard let newUiState else { return }
+                self.uiState = newUiState
             }
         }
         
