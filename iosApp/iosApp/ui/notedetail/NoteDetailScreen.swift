@@ -13,10 +13,9 @@ struct NoteDetailScreen : View {
             notesRepository: appModule.provideNotesRepository(),
             currentNoteId: note?.id
         )
-        if(note != nil){
-            _titleText = State(initialValue: note!.title)
-            _contentText = State(initialValue: note!.content)
-        }
+        guard let note else { return }
+        _titleText = State(initialValue: note.title)
+        _contentText = State(initialValue: note.content)
     }
     
     var body : some View {
